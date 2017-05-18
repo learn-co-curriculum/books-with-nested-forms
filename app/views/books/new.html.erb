@@ -1,0 +1,23 @@
+<h2>Add A Book</h2>
+
+<%= form_for @book do |f| %>
+
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label "Genres" %>
+    <%= f.collection_check_boxes :genre_ids, Genre.all, :id, :title %>
+  </div>
+
+  <div>
+    <%= f.fields_for :genre_attribute do |field| %>
+      <%= field.label "Add New Genre" %>
+      <%= field.text_field :title %>
+    <% end %>
+  </div>
+
+  <%= f.submit "Yay!! New Book" %>
+<% end %>
